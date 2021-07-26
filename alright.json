@@ -1,0 +1,23 @@
+
+{
+    "file":{
+        "file_name":"sales_20210722.txt"
+    },
+    "mysql":{
+        "host":"34.94.178.213",
+        "user":"root",
+        "passwd":"juhAXaZUswaSP5NLtlsW&!ip@esoDrit",
+        "db":"movado",
+        "ssl_key" : "D:/DoNotDelete/Documents/US_DEV_DB/client-key.pem",
+        "ssl_cert" : "D:/DoNotDelete/Documents/US_DEV_DB/client-cert.pem",
+        "ssl_ca" : "D:/DoNotDelete/Documents/US_DEV_DB/server-ca.pem"
+    },
+    "other":{
+        "preprocessing_queue":[
+            "preprocessing.scale_and_center",
+            "preprocessing.dot_reduction",
+            "preprocessing.connect_lines"
+            ],
+        "use_anonymous":true
+    }
+}
