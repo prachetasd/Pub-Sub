@@ -1,0 +1,27 @@
+{
+"project":{
+    "project_id":"dn-us-analytics-dev",
+    "topic_id":"pubsub_log",
+    "sub_id":"pubsub_log-sub",
+    "timeout":"10.0",
+    "credentials":"C:\\Users\\prachetas.deshpande\\pub_sub_try\\pubsub_logs.json"
+},
+"mysql":{
+    "host":"34.89.49.120",
+    "user":"root",
+    "passwd":"s3Lv1qlk5CrOthIdInlz*d4*_rixEdr3",
+    "db":"hammerson",
+    "ssl_key" : "D:/DoNotDelete/Documents/dn-db-europe-west2-a-dev/client-key.pem",
+    "ssl_cert" : "D:/DoNotDelete/Documents/dn-db-europe-west2-a-dev/client-cert.pem",
+    "ssl_ca" : "D:/DoNotDelete/Documents/dn-db-europe-west2-a-dev/server-ca.pem",
+    "table": "dummy_linecounting"
+},
+"other":{
+    "preprocessing_queue":[
+        "preprocessing.scale_and_center",
+        "preprocessing.dot_reduction",
+        "preprocessing.connect_lines"
+        ],
+    "use_anonymous":true
+}
+}

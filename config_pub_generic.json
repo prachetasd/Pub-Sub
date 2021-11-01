@@ -1,0 +1,20 @@
+{
+"project":{
+    "project_id":"dn-us-analytics-dev",
+    "topic_id":"sensors",
+    "avsc_file":"C:\\Users\\prachetas.deshpande\\pub_sub_try\\ex1.avsc",
+    "credentials":"C:\\Users\\prachetas.deshpande\\pub_sub_try\\the_new.json",
+    "Files_to_read":"D:\\DoNotDelete\\Documents\\pub_files",
+    "Files_read":"D:\\DoNotDelete\\Documents\\pub_files_deleted",
+    "maximum_elements":"50000"
+},
+"other":{
+    "preprocessing_queue":[
+        "preprocessing.scale_and_center",
+        "preprocessing.dot_reduction",
+        "preprocessing.connect_lines"
+        ],
+    "use_anonymous":true
+}
+}
+
