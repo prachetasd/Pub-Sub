@@ -12,9 +12,6 @@ from google.cloud.pubsub import PublisherClient
 from os import path
 import avro_validator
 from avro_validator.schema import Schema
-import logging
-
-logging.basicConfig(filename='publisher_logs.log', encoding='utf-8', level=logging.INFO)
 
 class PublishClient:
 
@@ -37,8 +34,8 @@ class PublishClient:
             self.encoding = self.topic.schema_settings.encoding
             self.init_done = True
         except Exception as e:
-            logging.error("invalid credentials")
-            logging.error(e, exc_info=True)
+            print("invalid credentials")
+            return
 
     # The public function will publish all the messages read
     def __publish_data(self, list_of_rows,prop_id,comp_id):
@@ -52,34 +49,35 @@ class PublishClient:
                     try:
                         future = self.publisher_client.publish(self.topic_path, data_row_encoded)
                     except google.api_core.exceptions as e:
-                        logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + 'Message: ' + str(data_row) + 'Status: Failed')
-                    except UnicodeDecodeError:
-                         logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + 'Message: ' + str(data_row) + 'Status: Failed')
+                        #logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + 'Message: ' + str(data_row) + 'Status: Failed')
+                        print("error in schema")
                     if future.result() == None:
-                        logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Message: ' + str(data_row) + 'Status: Failed')  
+                        #logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Message: ' + str(data_row) + 'Status: Failed')
+                        print("error in schema")
                     else:
                         total_rows = total_rows + 1
                     #print(total_rows)
             except Exception as e:
-                logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Message: ' + str(data_row) + 'Status: Failed')
-                logging.error(e, exc_info=True)
+                #logging.error(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Message: ' + str(data_row) + 'Status: Failed')
+                #logging.error(e, exc_info=True)
+                print("Error in publishing")
             #else:
                 #logging.error(f"No encoding specified in {self.topic_path}. Abort.")
             except NotFound:                                                            # If messages cannot be found the program will give an error
-                logging.error(f"{self.topic_id} not found.")
-        logging.info(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Messages count: ' + str(total_rows) + '; Status: success')
+                print(f"{self.topic_id} not found.")
+        #logging.info(str(datetime.datetime.now()) + ' Topic_id: ' + self.topic_id + '; Property_id ' + str(prop_id) + ' Messages count: ' + str(total_rows) + '; Status: success')
 
     def __run_pub(self,lines,prop_id,comp_id):
-        logging.info(str(datetime.datetime.now()) + ' For property id ' + str(prop_id) + ' Messages Recieved: ' + str(len(lines)))
+        #logging.info(str(datetime.datetime.now()) + ' For property id ' + str(prop_id) + ' Messages Recieved: ' + str(len(lines)))
         total_rows_of_data = self.__publish_data(lines,prop_id,comp_id)
         lines = []
         return total_rows_of_data
 
     def publish_data(self, lines, prop_id, comp_id):
         #lines = []
-        if not self.init_done:
-            logging.error("Initialization not done!!!")
-            return 0
+        #if not self.init_done:
+            #logging.error("Initialization not done!!!")
+            #return 0
         company_and_property = '{"company_id":"' + comp_id + '","property_id":"' + prop_id + '"'
         lines = list(map(lambda x:x.replace("{",","),lines))
         lines = list(map(lambda y: company_and_property + y,lines))
