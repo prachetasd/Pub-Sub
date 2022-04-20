@@ -1,0 +1,14 @@
+{
+"project":{
+	 "DNCA":{
+		"project_id":"dn-us-analytics-dev",
+		"topic_id":"DNCA_THD",
+		"credentials":"/opt/PubSub/the_new.json"
+     },
+	 "parking":{
+		"project_id":"dn-us-analytics-dev",
+		"topic_id":"parking_semi_prod",
+		"credentials":"/opt/PubSub/the_new.json"
+     }
+	}
+}
