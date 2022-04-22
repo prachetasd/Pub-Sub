@@ -89,7 +89,7 @@ class PublishClient:
         return total_rows_published
 
 def main(lines,prop_id,comp_id):
-    with open("config/config_pub_avro_schema.json") as pub_config_file:
+    with open("configs/config_pub_avro_schema.json") as pub_config_file:
             data = json.load(pub_config_file)
     for topic in data["project"]:
         publish_obj = PublishClient(topic,data)
