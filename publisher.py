@@ -27,6 +27,7 @@ class PublishClient:
             os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = self.credential_path
             self.name_of_table = table_name
             self.publisher_client = PublisherClient()                   # The avsc file that is used for schema validation
+            self.topic_path = self.publisher_client.topic_path(self.project_id, self.topic_id)
             if table_name!="THD":
                 self.topic = self.publisher_client.get_topic(request={"topic": self.topic_path}) 
                 self.encoding = self.topic.schema_settings.encoding
