@@ -1,0 +1,14 @@
+{
+    "project":{
+        "project_id":"dn-pubsub-prod",
+        "sub_id":"queue_count-sub",
+        "credentials":"matching_records_prod.json",
+        "timeout": "5.0"
+    },
+    "mysql":{
+        "host":"10.20.0.5",
+        "user":"root",
+        "passwd":"XjTu1two3four5$",
+        "db":"testbench_dnip32_pubsub"
+    }
+    }
