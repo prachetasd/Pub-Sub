@@ -1,9 +1,0 @@
-{
-"project":{
-     "matching_records":{
-     	"project_id":"dn-pubsub-prod",
-		"topic_id":"matching_records_prod",
-		"credentials":"/pub_config/matching_records_prod_key.json"
-    }
-	}
-}
